@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
 function App() {
   const [tasks, setTasks] = useState([
@@ -36,12 +37,23 @@ function App() {
     const newTask = tasks.filter((task) => task.id !== taskId);
     setTasks(newTask);
   }
+
+  function onClickAddTask(title, description) {
+    const newTask = {
+      id: tasks.length + 1,
+      title,
+      description,
+      isCompleted: false,
+    };
+    setTasks([...tasks, newTask]);
+  }
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center">
       <div className="w-125">
         <h1 className="font-bold text-3xl text-white text-center">
           Task Manager
         </h1>
+        <AddTask onClickAddTask={onClickAddTask} />
         <Tasks
           tasks={tasks}
           onClickChangeTaskStatus={onClickChangeTaskStatus}
