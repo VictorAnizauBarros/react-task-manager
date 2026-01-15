@@ -27,6 +27,9 @@ function AddTask({ onClickAddTask }) {
       <button
         className="p-2 rounded shadow w-full flex cursor-pointer bg-amber-300 font-bold text-white justify-center"
         onClick={() => {
+          if (!title.trim() || !description.trim()) {
+            return alert("Preencha os campos corretamente.");
+          }
           onClickAddTask(title, description);
           setTitle("");
           setDescription("");

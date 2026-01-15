@@ -1,6 +1,8 @@
 import { useState } from "react";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
+import { v4 } from "uuid";
+
 function App() {
   const [tasks, setTasks] = useState([
     {
@@ -40,7 +42,7 @@ function App() {
 
   function onClickAddTask(title, description) {
     const newTask = {
-      id: tasks.length + 1,
+      id: v4(),
       title,
       description,
       isCompleted: false,
@@ -49,7 +51,7 @@ function App() {
   }
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center">
-      <div className="w-125">
+      <div className="w-125 flex flex-col space-y-4">
         <h1 className="font-bold text-3xl text-white text-center">
           Task Manager
         </h1>
