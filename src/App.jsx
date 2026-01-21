@@ -1,29 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { v4 } from "uuid";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
-import { v4 } from "uuid";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Estudar Python",
-      description: "Estudar a lingugagem mais utilizada em analise de dados.",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      title: "Estudar Javascript",
-      description: "Estudar a lingugagem mais utilizada na web.",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      title: "Estudar Java",
-      description: "Estudar a lingugagem mais utilizada em sistemas robustos.",
-      isCompleted: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function onClickChangeTaskStatus(taskId) {
     const newTask = tasks.map((task) => {
@@ -49,6 +36,7 @@ function App() {
     };
     setTasks([...tasks, newTask]);
   }
+
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center">
       <div className="w-125 flex flex-col space-y-4">
