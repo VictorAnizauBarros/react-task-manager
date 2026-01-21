@@ -12,6 +12,20 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
+  /*
+  Utilzizar em caso de querer buscar tarefas de uma API externa.  
+  useEffect(() => {
+    async function fetchTasks() {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos?_limit=10",
+        { method: "GET" }
+      );
+      const data = await response.json();
+      setTasks(data);
+    }
+    fetchTasks();
+  }, []); */
+
   function onClickChangeTaskStatus(taskId) {
     const newTask = tasks.map((task) => {
       if (taskId === task.id) {
