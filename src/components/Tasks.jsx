@@ -12,6 +12,13 @@ function Tasks({ tasks, onClickChangeTaskStatus, onClickDeleteTask }) {
 
     navigate(`/tasks?${query.toString()}`);
   }
+  if (!tasks || tasks.length === 0) {
+    return (
+      <div className="bg-slate-200 p-6 rounded text-center text-gray-500">
+        No tasks available.
+      </div>
+    );
+  }
   return (
     <div className="bg-slate-200 p-6 rounded ">
       <ul className="flex flex-col space-y-5">
